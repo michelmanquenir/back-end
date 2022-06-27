@@ -8,14 +8,15 @@ const cors = require('cors');
 
 // middlewares
 app.use(cors());
-
 //routes
 var user_route = require('./src/routes/user');
 const api = require('./src/routes/user');
 
-
+app.listen(port, () => {
+    console.log('Servidor corriendo en el puerto ' + port);
+});
 //conexion base de datos
-mongoose.connect('mongodb://127.0.0.1:27017/bancoestado',{useUnifiedTopology: true, useNewUrlParser: true},(err, res) => {
+/* mongoose.connect('mongodb://127.0.0.1:27017/bancoestado',{useUnifiedTopology: true, useNewUrlParser: true},(err, res) => {
     if (err) {
             console.log(err);
         } else {
@@ -25,7 +26,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/bancoestado',{useUnifiedTopology: tr
             
         });
     }
-});
+}); */
 
 
 app.use(bodyparser.urlencoded({ extended: true }));

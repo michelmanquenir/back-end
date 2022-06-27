@@ -8,4 +8,5 @@ api.post('/registerUser', userController.registerUser);
 api.post('/loginUser', userController.loginUser);
 
 api.get( '/getDatosDummy', userController.getDatosDummy);
+
 module.exports = api;

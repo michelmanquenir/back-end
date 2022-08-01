@@ -1,13 +1,14 @@
-'user strict';
 var User = require('../models/user.js');
+const logger = require('../utils/logger')('UserController');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('../helpers/jwt.js');
+const userCtrl = {};
 
-const registerUser = async function(req, res) {
+userCtrl.registerUser = async (req, res) => {
     try {
+    console.log("registerUser");
         var data = req.body;
         const user_array =  await User.find({ email: data.email });
-        
         if(user_array.length == 0) {
             if(data.password) {
                 bcrypt.hash(data.password, null, null, async function(err, hash) {
@@ -28,7 +29,6 @@ const registerUser = async function(req, res) {
                     data: undefined
                 });
             }
-           
         } else {
             res.status(200).json({
                 error: '0',
@@ -43,7 +43,7 @@ const registerUser = async function(req, res) {
     }
 };
 
-const loginUser = async function(req, res) {
+userCtrl.loginUser = async (req, res) => {
     try {
         var data = req.body;
         console.log(data);
@@ -103,8 +103,10 @@ const loginUser = async function(req, res) {
         });
     }
 }
-const getDatosDummy = async function(req, res) {
+userCtrl.getDatosDummy = async (req, res) => {
     try{
+        console.log("getDatosDummy");
+        logger.debug("[getDatosDummy] Inicio get datos dummy");
         const arrayDummy = [
             {
                 id: 1,
@@ -132,8 +134,4 @@ const getDatosDummy = async function(req, res) {
         });
     }
 }
-module.exports = {
-    registerUser,
-    loginUser,
-    getDatosDummy
-};
+module.exports = userCtrl;

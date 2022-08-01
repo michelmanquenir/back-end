@@ -1,12 +1,18 @@
-'use strict'
+const { Router } = require('express');
+const router = Router();
 
-var express = require('express');
-var userController = require('../controllers/user.controller');
-var api = express.Router();
 
-api.post('/registerUser', userController.registerUser);
-api.post('/loginUser', userController.loginUser);
+const {
+    registerUser,
+    loginUser,
+    getDatosDummy
+} = require('../controllers/user.controller');
 
-api.get( '/getDatosDummy', userController.getDatosDummy);
+router.route('/register')
+    .post(registerUser);
+router.route('/loginUser')
+    .post(loginUser);
+router.route('/getDatosDummy')
+    .get(getDatosDummy);
 
-module.exports = api;
+module.exports = router;

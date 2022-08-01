@@ -7,14 +7,14 @@ require('./database');
  * Funcion Main, arranque de aplicacion y seleccion de puerto
  */
 async function main(){
-    const puerto = app.get('port');
-    await app.listen(puerto);
-    logger.info('---------------------------------------');
-    logger.info('---------------------------------------');
-    logger.info('Se inicia la aplicacion backend de Bode');
-    logger.info('server inicia en puerto: ' + puerto);
-    logger.info('El nivel de log es : ' + process.env.LEVELLOG || "debug-default");
-    logger.info('---------------------------------------');
+  const puerto = app.get('port');
+  await app.listen(puerto);
+  logger.info('---------------------------------------');
+  logger.info('---------------------------------------');
+  logger.info('Se inicia la aplicacion backend de Bode');
+  logger.info('server inicia en puerto: ' + puerto);
+  logger.info('El nivel de log es : ' + process.env.LEVELLOG || 'debug-default');
+  logger.info('---------------------------------------');
 }
 
 main();
